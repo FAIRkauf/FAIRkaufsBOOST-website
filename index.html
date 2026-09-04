@@ -110,6 +110,67 @@ h2+.lead,h1+.lead{margin-top:16px}
 .btn-block{width:100%}
 .btn small{display:block;font-weight:400;font-size:.78rem;opacity:.82;margin-top:2px}
 
+/* ---------- Pilot-Banner (befristetes Wochenendkontingent) ---------- */
+.pilot-banner{background:var(--mint-pastel);color:var(--ink);position:relative;overflow:hidden}
+.pilot-banner .pilot-banner-inner{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:16px 22px;max-width:var(--wrap);margin:0 auto;box-sizing:border-box}
+.pilot-banner-text{display:flex;flex-direction:column;align-items:center;gap:7px;flex:1;min-width:230px;text-align:center}
+.pilot-headline{display:flex;flex-direction:column;align-items:center;gap:3px}
+.pilot-headline span{font-family:var(--display);font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.15}
+.pilot-headline [data-pilot-headline-top]{font-size:1.55rem}
+.pilot-headline [data-pilot-headline-bottom]{
+  font-size:1.05rem;color:var(--ink);width:fit-content;
+  background-image:linear-gradient(transparent 58%,var(--marker) 58%,var(--marker) 90%,transparent 90%);
+  background-repeat:no-repeat;background-size:100% 100%;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  padding:0 .06em;
+}
+[data-pilot-sub]{display:block;font-size:.79rem;color:var(--ink-2);font-weight:400}
+.pilot-banner-stats{display:flex;gap:8px;flex-wrap:wrap}
+.pilot-chip{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.02em;
+  background:rgba(44,55,54,.1);border:1px solid rgba(44,55,54,.24);color:var(--ink);
+  padding:6px 12px;border-radius:999px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;
+}
+.pilot-chip-time{color:var(--ink)}
+.pilot-banner-cta{padding:9px 18px;font-size:.8rem;white-space:nowrap;flex:none;background:var(--ink);color:#fff;border-color:transparent}
+.pilot-banner-cta:hover{background:var(--mint-dark)}
+.pilot-banner-progress{height:3px;background:rgba(44,55,54,.18)}
+.pilot-banner-progress i{display:block;height:100%;background:var(--ink);width:0%;transition:width .6s ease}
+body.pilot-soldout .pilot-banner{background:var(--mint)}
+body.pilot-soldout .pilot-headline span,
+body.pilot-soldout [data-pilot-sub],
+body.pilot-soldout .pilot-chip,
+body.pilot-soldout .pilot-chip-time,
+body.pilot-soldout .pilot-banner-progress i{color:#fff}
+body.pilot-soldout .pilot-headline [data-pilot-headline-bottom]{color:var(--ink)}
+body.pilot-soldout .pilot-chip{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3)}
+body.pilot-soldout .pilot-banner-progress{background:rgba(255,255,255,.2)}
+body.pilot-soldout .pilot-banner-progress i{background:#fff}
+@media(max-width:760px){
+  .pilot-banner .pilot-banner-inner{padding:22px 28px;gap:14px;flex-direction:column}
+  .pilot-banner-cta{display:none}
+  .pilot-banner-text{gap:6px}
+  .pilot-headline [data-pilot-headline-top]{font-size:1.4rem}
+  .pilot-headline [data-pilot-headline-bottom]{font-size:1rem}
+  [data-pilot-sub]{font-size:.76rem;line-height:1.45}
+  .pilot-banner-stats{gap:8px 10px;justify-content:center}
+}
+@media(max-width:400px){
+  .pilot-banner .pilot-banner-inner{padding:22px 24px}
+}
+
+.pilot-badge{
+  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;text-align:center;
+  font-family:var(--mono);font-size:.76rem;font-weight:700;color:var(--ink);white-space:nowrap;
+  background:var(--marker);border-radius:10px;padding:11px 16px;margin:0 0 16px;
+}
+@media(max-width:480px){
+  .pilot-badge{font-size:.62rem;letter-spacing:-.01em;padding:10px 8px}
+}
+@media(max-width:340px){
+  .pilot-badge{white-space:normal;font-size:.66rem}
+}
+
 /* ---------- Topbar ---------- */
 .topbar{
   position:sticky;top:0;z-index:50;background:rgba(250,249,245,.92);
@@ -805,6 +866,24 @@ details p{padding:0 20px 22px 0;color:var(--muted);font-size:.97rem;font-weight:
 </head>
 <body>
 
+<div id="pilotBanner" class="pilot-banner">
+  <div class="wrap pilot-banner-inner">
+    <div class="pilot-banner-text">
+      <b class="pilot-headline">
+        <span data-pilot-headline-top>🔥 Nur dieses Wochenende</span>
+        <span data-pilot-headline-bottom>100 exklusive Boosts!</span>
+      </b>
+      <span data-pilot-sub>Wer zuerst kommt, rettet zuerst sein Inserat.</span>
+    </div>
+    <div class="pilot-banner-stats">
+      <span class="pilot-chip"><span data-pilot-count>0</span>/100 gesichert</span>
+      <span class="pilot-chip pilot-chip-time">⏳ <span data-pilot-countdown>–</span></span>
+    </div>
+    <a class="btn btn-primary pilot-banner-cta" href="#check" data-cta="pilot-banner">Platz sichern</a>
+  </div>
+  <div class="pilot-banner-progress"><i data-pilot-bar></i></div>
+</div>
+
 <header class="topbar">
   <div class="inner">
     <a class="brand" href="#top">
@@ -1260,6 +1339,7 @@ details p{padding:0 20px 22px 0;color:var(--muted);font-size:.97rem;font-weight:
     </div>
 
     <div class="form-wrap rv">
+      <p class="pilot-badge" id="pilotBadgeForm" data-pilot-badge-text>🔥 Nur noch 100/100 Boostplätzen frei!</p>
       <form id="leadForm" novalidate action="https://formspree.io/f/xrpgkvao" method="POST">
         <input type="hidden" name="_subject" value="Neue Anfrage: Kostenloser Inserat-Check – Fairkaufsboost">
         <div class="form-grid">
@@ -1738,6 +1818,80 @@ details p{padding:0 20px 22px 0;color:var(--muted);font-size:.97rem;font-weight:
 <script>
 document.getElementById('jahr').textContent = new Date().getFullYear();
 
+/* Pilot-Kontingent: 100 Boosts, 04.–06.09.2026 (Fr–So). Live-Zähler via Abacus-Counter-API
+   (kostenlos, ohne Anmeldung, CORS-fähig: https://abacus.jasoncameron.dev). Der Zähler wird
+   ausschließlich bei einer erfolgreich verschickten Formular-Anfrage erhöht (siehe unten im
+   Formular-Handler). Bewusst KEIN Hard-Block ab 100: das Kontingent ist eine Dringlichkeits-
+   Ansage, keine technische Sperre – so geht nie eine echte Anfrage verloren, falls der externe
+   Zähler mal nicht erreichbar ist. */
+(function(){
+  const END = new Date('2026-09-06T23:59:59+02:00');
+  const GOAL = 100;
+  const NS = 'fairkaufsboost-de';
+  const KEY = 'pilot-wochenende-2026-09';
+
+  const banner = document.getElementById('pilotBanner');
+  const badge = document.getElementById('pilotBadgeForm');
+
+  if (new Date() > END) {
+    banner?.remove();
+    badge?.remove();
+    return;
+  }
+
+  function fmtCountdown(ms){
+    if (ms <= 0) return 'gleich vorbei';
+    const min = Math.floor(ms / 60000);
+    const d = Math.floor(min / 1440), h = Math.floor((min % 1440) / 60), m = min % 60;
+    if (d > 0) return `${d} Tag${d !== 1 ? 'e' : ''} ${h} Std`;
+    if (h > 0) return `${h} Std ${m} Min`;
+    return `${m} Min`;
+  }
+
+  function render(n){
+    const claimed = Math.max(0, Math.min(n, GOAL));
+    const left = Math.max(GOAL - n, 0);
+    const soldOut = n >= GOAL;
+    document.querySelectorAll('[data-pilot-count]').forEach(el => el.textContent = claimed);
+    document.querySelectorAll('[data-pilot-bar]').forEach(el => el.style.width = (claimed / GOAL * 100) + '%');
+    document.querySelectorAll('[data-pilot-headline-top]').forEach(el => {
+      el.textContent = soldOut ? '🎉 Dieses Wochenende' : '🔥 Nur dieses Wochenende';
+    });
+    document.querySelectorAll('[data-pilot-headline-bottom]').forEach(el => {
+      el.textContent = soldOut ? 'ausverkauft – alle 100 vergeben' : '100 exklusive Boosts!';
+    });
+    document.querySelectorAll('[data-pilot-sub]').forEach(el => {
+      el.textContent = soldOut ? 'Trotzdem anfragen – wir schauen, was noch geht.' : 'Wer zuerst kommt, rettet zuerst sein Inserat.';
+    });
+    document.querySelectorAll('[data-pilot-badge-text]').forEach(el => {
+      el.textContent = soldOut ? '🎉 Alle 100 Boostplätze sind vergeben – trotzdem gerne anfragen' : `🔥 Nur noch ${left}/${GOAL} Boostplätzen frei!`;
+    });
+    document.body.classList.toggle('pilot-soldout', soldOut);
+  }
+
+  render(0);
+
+  function tick(){
+    const ms = END - new Date();
+    document.querySelectorAll('[data-pilot-countdown]').forEach(el => el.textContent = fmtCountdown(ms));
+    if (ms <= 0) { banner?.remove(); badge?.remove(); clearInterval(timer); }
+  }
+  tick();
+  const timer = setInterval(tick, 30000);
+
+  fetch(`https://abacus.jasoncameron.dev/get/${NS}/${KEY}`)
+    .then(r => r.ok ? r.json() : null)
+    .then(d => { if (d && typeof d.value === 'number') render(d.value); })
+    .catch(() => {});
+
+  window.__pilotIncrement = function(){
+    fetch(`https://abacus.jasoncameron.dev/hit/${NS}/${KEY}`)
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d && typeof d.value === 'number') render(d.value); })
+      .catch(() => {});
+  };
+})();
+
 /* Hero-Marker einblenden */
 document.querySelectorAll('.flag').forEach(f => f.classList.add('reveal-flag'));
 
@@ -2015,6 +2169,7 @@ form.addEventListener('submit', async (e) => {
     form.classList.add('hidden');
     document.getElementById('success').classList.add('on');
     document.getElementById('success').scrollIntoView({ block:'center', behavior:'smooth' });
+    window.__pilotIncrement?.();
   } catch (err) {
     document.getElementById('formError').classList.add('on');
     document.getElementById('formError').scrollIntoView({ block:'center', behavior:'smooth' });
