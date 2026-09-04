@@ -112,8 +112,9 @@ h2+.lead,h1+.lead{margin-top:16px}
 
 /* ---------- Pilot-Banner (befristetes Wochenendkontingent) ---------- */
 .pilot-banner{background:var(--mint-pastel);color:var(--ink);position:relative;overflow:hidden}
-.pilot-banner .pilot-banner-inner{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:16px 22px;max-width:var(--wrap);margin:0 auto;box-sizing:border-box}
-.pilot-banner-text{display:flex;flex-direction:column;align-items:center;gap:7px;flex:1;min-width:230px;text-align:center}
+.pilot-banner .pilot-banner-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:18px 22px;max-width:var(--wrap);margin:0 auto;box-sizing:border-box}
+.pilot-banner-text{display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center}
+.pilot-banner-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
 .pilot-headline{display:flex;flex-direction:column;align-items:center;gap:3px}
 .pilot-headline span{font-family:var(--display);font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.15}
 .pilot-headline [data-pilot-headline-top]{font-size:1.55rem}
@@ -875,11 +876,13 @@ details p{padding:0 20px 22px 0;color:var(--muted);font-size:.97rem;font-weight:
       </b>
       <span data-pilot-sub>Wer zuerst kommt, rettet zuerst sein Inserat.</span>
     </div>
-    <div class="pilot-banner-stats">
-      <span class="pilot-chip"><span data-pilot-count>0</span>/100 gesichert</span>
-      <span class="pilot-chip pilot-chip-time">⏳ <span data-pilot-countdown>–</span></span>
+    <div class="pilot-banner-actions">
+      <div class="pilot-banner-stats">
+        <span class="pilot-chip"><span data-pilot-count>0</span>/100 gesichert</span>
+        <span class="pilot-chip pilot-chip-time">⏳ <span data-pilot-countdown>–</span></span>
+      </div>
+      <a class="btn btn-primary pilot-banner-cta" href="#check" data-cta="pilot-banner">Platz sichern</a>
     </div>
-    <a class="btn btn-primary pilot-banner-cta" href="#check" data-cta="pilot-banner">Platz sichern</a>
   </div>
   <div class="pilot-banner-progress"><i data-pilot-bar></i></div>
 </div>
