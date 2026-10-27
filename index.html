@@ -2215,6 +2215,13 @@ svg.fk-sym{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-w
 .hw-sub{flex:1 1 230px;min-width:0;margin:0;font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.72)}
 .hw-count-box{flex:none;margin:0}
 .hw-terms{margin:14px 0 0;font-size:11px;line-height:1.5;color:rgba(255,255,255,.45)}
+/* Handy/Tablet: Gutschein-Inhalt mittig statt linksbuendig */
+@media(max-width:900px){
+  .hw-coupon{text-align:center}
+  .hw-coupon-in{justify-content:center}
+  .hw-big{justify-content:center}
+  .hw-sub,.hw-terms{text-align:center}
+}
 @media(max-width:620px){
   .hw-coupon{padding:16px 14px}
   .hw-coupon::before{inset:6px}
